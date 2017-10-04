@@ -1,4 +1,4 @@
-<?php include 'header.php'; ?>
+<?php get_header(); ?>
     <div class="mh-header-nav-mobile clearfix"></div>
 
         <div class="mh-wrapper mh-home clearfix">
@@ -175,49 +175,62 @@
                     <img id="img" src="<?php //echo get_stylesheet_directory_uri(); ?>/images/ad-banner/sarothemusical.jpg" style="width:320px; height:350px; margin-top:10px;"/>
                     </a>-->
                     <div id="mh_magazine_youtube-2" class="mh-widget mh_magazine_youtube">
-                        <h4 class="mh-widget-title"><span class="mh-widget-title-inner"><i class="fa fa-youtube-play"></i>Featured Video</span></h4>
+                        <h4 class="mh-widget-title">
+                            <span class="mh-widget-title-inner">
+                                <i class="fa fa-youtube-play"></i>
+                                    Featured Video
+                            </span>
+                        </h4>
+                            <?php  
+                                $args = array(
+                                    'post_type' => 'videos',
+                                    'posts_per_page' => 1,
+                                );
+
+                                $the_query = new WP_Query( $args );
+                            ?>
+                            <?php if(have_posts() ): while( $the_query->have_posts()): $the_query->the_post(); ?>                            
                         <div class="mh-video-widget">
                             <div class="mh-video-container">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/tEoH8cJPltI" frameborder="0" allowfullscreen></iframe>
+                                <iframe width="560" height="315" src="<?php the_field('video_youtube_iframe'); ?>" frameborder="0" allowfullscreen></iframe>
                             </div>
                             <p style="font-size: 12px; font-weight:bold; padding-top: 5px; padding-bottom:5px;">
-                                <a href="https://www.youtube.com/watch?v=tEoH8cJPltI" target="_blank">
-                                <i class="fa fa-chevron-right" style="padding-top: 5px; padding-bottom:5px"></i>Interviews With Senator Ademola Nurudeen:
-                            </a>
+                                <i class="fa fa-chevron-right" style="padding-top: 5px; padding-bottom:5px"></i>
+                                <?php the_field('video_name'); ?>    
                             </p>
                         </div>
+                                <?php endwhile; endif; ?>
                         <p style="padding: 6px 6px;">Up Next</p>
+                            <?php  
+                                $args = array(
+                                    'post_type' => 'videos',
+                                    'posts_per_page' => 3,
+                                );
+
+                                $the_query = new WP_Query( $args );
+                            ?>
                         <ul class="mh-custom-posts-widget clearfix">
+                            <?php if(have_posts() ): while( $the_query->have_posts()): $the_query->the_post(); ?>
                             <li class="mh-custom-posts-item mh-custom-posts-small clearfix post-144 post type-post status-publish format-standard has-post-thumbnail category-world tag-boat tag-sightseeing tag-travel tag-world">
                                 <figure class="mh-custom-posts-thumb">
                                     <a class="mh-thumb-icon mh-thumb-icon-small" href="#" title="Iam nonumy eirmod tempor invidunt ut labore et dol">
-                                    <img width="80" height="60" src="<?php echo get_stylesheet_directory_uri()?>/images/Picture1.png" class="attachment-mh-magazine-small size-mh-magazine-small wp-post-image" alt="Ship"  sizes="(max-width: 80px) 100vw, 80px" /> </a>
+                                    <img width="80" height="60" src="<?php the_field('video_image'); ?>" class="attachment-mh-magazine-small size-mh-magazine-small wp-post-image"  sizes="(max-width: 80px) 100vw, 80px" /> </a>
                                 </figure>
                                 <div class="mh-custom-posts-header">
-                                    <div class="mh-custom-posts-small-title"> <a href="#" style="font-size:12px;"> Maitama Sule: Osinbajo Visits Kano, Condoles With Residents</a></div>
+                                    <div class="mh-custom-posts-small-title">
+                                        <a href="#" style="font-size:12px;">
+                                            <?php the_field('video_name'); ?>
+                                        </a>
+                                    </div>
                                     <div class="mh-meta entry-meta">
                                         <span class="entry-meta-date updated" style="color:black;">
                                         <i class="fa fa-play fa-1g" aria-hidden="true"></i>
-                                        <a href="#" style="font-weight:bold; color:black;">Play Video 6:33</a>
+                                        <a href="#" style="font-weight:bold; color:black;">Play Video</a>
                                     </span>
                                     </div>
                                 </div>
                             </li>
-                            <li class="mh-custom-posts-item mh-custom-posts-small clearfix post-144 post type-post status-publish format-standard has-post-thumbnail category-world tag-boat tag-sightseeing tag-travel tag-world">
-                                <figure class="mh-custom-posts-thumb">
-                                    <a class="mh-thumb-icon mh-thumb-icon-small" href="#" title="Iam nonumy eirmod tempor invidunt ut labore et dol">
-                                    <img width="80" height="60" src="<?php echo get_stylesheet_directory_uri()?>/images/Picture4.png" class="attachment-mh-magazine-small size-mh-magazine-small wp-post-image" alt="Ship"  sizes="(max-width: 80px) 100vw, 80px" /> </a>
-                                </figure>
-                                <div class="mh-custom-posts-header">
-                                    <div class="mh-custom-posts-small-title"> <a href="#" style="font-size:12px;"> Saraki’s CCT acquittal: Fed Govt Completes record transmission.</a></div>
-                                    <div class="mh-meta entry-meta">
-                                        <span class="entry-meta-date updated" style="color:black;">
-                                        <i class="fa fa-play fa-1g" aria-hidden="true"></i>
-                                        <a href="#" style="font-weight:bold; color:black;">Play Video 6:33</a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </li>
+                            <?php endwhile; endif; ?>
                         </ul>
                     </div>
                     <!-- TODO: Use Plugin Video Section -->
@@ -249,7 +262,7 @@
                                 <div class="mh-custom-posts-thumb" style="width: 100px; height: 100px; background-size: cover;background-image: url(<?php echo get_the_post_thumbnail_url() ?>)"></div>
                                     <div class="mh-custom-posts-header" style="font-size:13px;">
                                     <h5 class="mh-custom-posts-small-title">
-                                        <a href="<?php the_permalink(); ?>" title="<?php echo get_the_title(); ?>"><?php echo tokenTruncate(get_the_title(), 50) ?> </a>
+                                        <a href="#" title="<?php echo get_the_title(); ?>"><?php echo tokenTruncate(get_the_title(), 50) ?> </a>
                                     </h5>
                                     <?php echo tokenTruncate(get_the_content(), 50) . '...<a href="'. get_permalink() .'">Read More</a>'; ?>
                                     <div class="mh-meta entry-meta">

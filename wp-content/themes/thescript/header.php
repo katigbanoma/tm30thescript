@@ -1,7 +1,7 @@
 <?php
-    /*date_default_timezone_set('Africa/Lagos');
-    $conn = mysqli_connect("localhost", "thescrip_cms", "Available247?", "thescrip_cmsdb");
-    //$conn = mysqli_connect("localhost", "root", "kini419,247", "thescript");
+    date_default_timezone_set('Africa/Lagos');
+    //$conn = mysqli_connect("localhost", "thescrip_cms", "Available247?", "thescrip_cmsdb");
+    $conn = mysqli_connect("localhost", "root", "kini419,247", "thescript");
     $cheki = "SELECT time from exchange WHERE confirm='yes'";
     $res = mysqli_query($conn, $cheki);
     $dp = mysqli_fetch_assoc($res);
@@ -25,7 +25,7 @@
     if ($tao !== $fik) {
             $html ="";
             $GLOBALS['data'] = array();
-        try {    
+        /*try {    
             $client = new Client();
             $guzzleClient = new GuzzleClient(array('timeout'=>60));
             $client->setClient ($guzzleClient);
@@ -42,8 +42,8 @@
             foreach ($GLOBALS['data'] as $x) {
             $html .= $x;
             }
-            $conn = mysqli_connect("localhost", "thescrip_cms", "Available247?", "thescrip_cmsdb");
-            //$conn = mysqli_connect("localhost", "root", "kini419,247", "thescript");
+            //$conn = mysqli_connect("localhost", "thescrip_cms", "Available247?", "thescrip_cmsdb");
+            $conn = mysqli_connect("localhost", "root", "kini419,247", "thescript");
             if ($html !=="") {
             $insexchange = "UPDATE exchange SET body='$html', time=now() WHERE confirm='yes'";
                 $res = mysqli_query($conn, $insexchange);
@@ -54,12 +54,12 @@
         } 
         catch(Exception $e){
             echo $e;
-        }
-    }*/
+        }*/
+    }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html class="no-js mh-one-sb" lang="en-US" prefix="og: http://ogp.me/ns#">
 <head>
     <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri()?>/style.css" />
     <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri()?>/font-awesome/css/font-awesome.min.css" />
@@ -73,10 +73,12 @@
     /* ]]> */
     </script>
     <script type="text/javascript" src="http://thescript.com.ng/wp-content/plugins/wysija-newsletters/js/front-subscribers.js?ver=2.7.11.3"></script>
-    
     <script src="<?php echo get_stylesheet_directory_uri()?>/js/jq0.js"></script>
+    
+    <script src="<?php echo get_stylesheet_directory_uri()?>/js/jq3.js"></script>
+    <script src="<?php echo get_stylesheet_directory_uri()?>/js/jq2.js"></script>        
     <script src="<?php echo get_stylesheet_directory_uri()?>/js/jq1.js"></script>
-    <script src="<?php echo get_stylesheet_directory_uri()?>/js/jq2.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Script</title>
